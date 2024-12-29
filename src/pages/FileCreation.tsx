@@ -140,11 +140,13 @@ const FileCreation: React.FC = () => {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      setSuccess('File created successfully! Redirecting to dashboard...');
+      setSuccess(
+        'File created successfully! Redirecting to officer-dashboard...',
+      );
 
       // Redirect after success
       setTimeout(() => {
-        navigate('/dashboard');
+        navigate('/officer-dashboard');
       }, 2000);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create file');
@@ -302,7 +304,7 @@ const FileCreation: React.FC = () => {
             <Button
               type="button"
               variant="secondary"
-              onClick={() => navigate('/dashboard')}
+              onClick={() => navigate('/officer-dashboard')}
             >
               Cancel
             </Button>

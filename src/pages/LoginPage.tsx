@@ -29,7 +29,7 @@ const LoginPage: React.FC = () => {
 
     try {
       await login(credentials.username, credentials.password);
-      navigate('/dashboard');
+      navigate('/admin');
     } catch (err) {
       setError('Invalid username or password. Please try again.');
     } finally {

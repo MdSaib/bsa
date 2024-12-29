@@ -108,7 +108,7 @@ const OfficerDashboard: React.FC = () => {
 
   // Navigation handlers
   const handleCreateFile = () => {
-    navigate('/files/create');
+    navigate('/file-creation');
   };
 
   const handleFileClick = (fileId: string) => {
