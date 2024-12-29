@@ -35,7 +35,7 @@ const FileDetailPage: React.FC = () => {
         title: 'Budget Approval 2024',
         description: 'Annual budget approval for IT department',
         status: 'IN_PROGRESS',
-        qrCodeUrl: '#',
+        qrCodeUrl: 'https://via.placeholder.com/150',
         initiatorId: 'user1',
         createdAt: '2024-01-01T00:00:00Z',
         currentStep: 2,
@@ -86,6 +86,17 @@ const FileDetailPage: React.FC = () => {
       setError('Failed to load file details');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const printQRCode = () => {
+    const printWindow = window.open('', '_blank');
+    if (printWindow) {
+      printWindow.document.write(
+        `<html><head><title>Print QR Code</title></head><body style="display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;"><img src="${file?.qrCodeUrl}" alt="QR Code" /></body></html>`,
+      );
+      printWindow.document.close();
+      printWindow.print();
     }
   };
 
@@ -165,9 +176,9 @@ const FileDetailPage: React.FC = () => {
               </p>
             </div>
             <div className="flex space-x-4">
-              <Button variant="secondary" onClick={handleQRScan}>
+              {/* <Button variant="secondary" onClick={handleQRScan}>
                 Scan QR Code
-              </Button>
+              </Button> */}
               {isCurrentOfficer && (
                 <Button onClick={() => handleStatusUpdate('COMPLETED')}>
                   Mark as Completed
@@ -190,6 +201,17 @@ const FileDetailPage: React.FC = () => {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* QR Code Section */}
+          <Card className="lg:col-span-1 text-center">
+            <h2 className="text-lg font-medium mb-4">QR Code</h2>
+            <img
+              src={file.qrCodeUrl}
+              alt="QR Code"
+              className="mx-auto mb-4 w-32 h-32"
+            />
+            <Button onClick={printQRCode}>Print QR Code</Button>
+          </Card>
+
           {/* File Details */}
           <Card className="lg:col-span-2">
             <h2 className="text-lg font-medium mb-4">File Details</h2>
